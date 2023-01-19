@@ -28,3 +28,12 @@ exports.deleteService = async (req, res) => {
     message: "service deleted",
   });
 };
+
+exports.updateService = async (req, res) => {
+  console.log(req.body.id);
+  const data = await service.findByIdAndUpdate({ _id: req.body.id },{name: req.body.name});
+  res.status(200).json({
+    message: "service update",
+    data: data,
+  });
+};

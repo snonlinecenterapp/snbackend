@@ -27,3 +27,21 @@ exports.deleteSubService = async (req, res) => {
     message: "service deleted",
   });
 };
+
+exports.updateSubService = async (req, res) => {
+  console.log(req.body);
+  const data = await subservice.findByIdAndUpdate(
+    { _id: req.body.id },
+    {
+      name: req.body.name,
+      parentService: req.body.parentService,
+      category: req.body.category,
+      document: req.body.document,
+      formFields: req.body.formFields,
+    }
+  );
+  res.status(200).json({
+    message: "subservice update",
+    data: data,
+  });
+};
